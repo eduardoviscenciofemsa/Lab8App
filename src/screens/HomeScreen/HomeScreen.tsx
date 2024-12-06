@@ -1,22 +1,43 @@
 import React, {useEffect, useState} from 'react';
-import {NativeModules, SafeAreaView, Text, View} from 'react-native';
+import {
+  NativeEventEmitter,
+  NativeModules,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 
 import {BatteryModuleType} from '../../typings/BatteryModule.type';
 
 import {styles} from './HomeScreen.styles';
 import {BatteryLevel} from '../../components';
 
-const {BatteryModule} = NativeModules;
+const {BatteryModule, EventEmitterModule} = NativeModules;
+console.log('EventEmitterModule:', EventEmitterModule);
+const eventEmitter = new NativeEventEmitter(EventEmitterModule);
 
 const HomeScreen = () => {
   const [batteryLevel, setBatteryLevel] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    EventEmitterModule.sendEventToJavaScript();
+
     (BatteryModule as BatteryModuleType)
       .getBatteryLevel()
       .then(setBatteryLevel)
       .catch(err => setError(err.toString()));
+  }, []);
+
+  useEffect(() => {
+    const eventListener = eventEmitter.addListener('onCustomEvent', event => {
+      console.log(event.message);
+    });
+
+    // Cleanup on unmount
+    return () => {
+      eventListener.remove();
+    };
   }, []);
 
   return (
