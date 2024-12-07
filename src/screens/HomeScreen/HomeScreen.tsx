@@ -23,7 +23,8 @@ const HomeScreen = () => {
     // EventEmitterModule.sendEventToJavaScript();
 
     (BatteryModule as BatteryModuleType)
-      .getBatteryLevel()
+      // .getBatteryLevel()
+      .performHeavyTask()
       .then(setBatteryLevel)
       .catch(err => setError(err.toString()));
   }, []);

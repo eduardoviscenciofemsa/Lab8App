@@ -43,4 +43,11 @@ class BatteryModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
             promise.reject("E_BATTERY_LEVEL", "Battery level unavailable", e)
         }
     }
+
+    @ReactMethod
+    fun performHeavyTask(promise: Promise) {
+        Thread(Runnable {
+            getBatteryLevel(promise);
+        }).start()
+    }
 }
