@@ -13,7 +13,6 @@ import {styles} from './HomeScreen.styles';
 import {BatteryLevel} from '../../components';
 
 const {BatteryModule, EventEmitterModule} = NativeModules;
-console.log('EventEmitterModule:', EventEmitterModule);
 const eventEmitter = new NativeEventEmitter(EventEmitterModule);
 
 const HomeScreen = () => {
@@ -21,7 +20,7 @@ const HomeScreen = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    EventEmitterModule.sendEventToJavaScript();
+    // EventEmitterModule.sendEventToJavaScript();
 
     (BatteryModule as BatteryModuleType)
       .getBatteryLevel()
@@ -29,12 +28,24 @@ const HomeScreen = () => {
       .catch(err => setError(err.toString()));
   }, []);
 
-  useEffect(() => {
-    const eventListener = eventEmitter.addListener('onCustomEvent', event => {
-      console.log(event.message);
-    });
+  // useEffect(() => {
+  //   const eventListener = eventEmitter.addListener('onCustomEvent', event => {
+  //     console.log(event.message);
+  //   });
 
-    // Cleanup on unmount
+  //   return () => {
+  //     eventListener.remove();
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const eventListener = eventEmitter.addListener(
+      'batteryLevelChanged',
+      value => {
+        setBatteryLevel(value);
+      },
+    );
+
     return () => {
       eventListener.remove();
     };
