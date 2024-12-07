@@ -15,6 +15,8 @@
 		6132EF182BDFF13200BBE14D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */; };
 		7699B88040F8A987B510C191 /* libPods-Lab8App-Lab8AppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Lab8App-Lab8AppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		A53C372A2D03CCF400958C4A /* EventEmitterModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53C37292D03CCF400958C4A /* EventEmitterModule.swift */; };
+		A53C372D2D03CD4400958C4A /* EventEmitterModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A53C372C2D03CD4400958C4A /* EventEmitterModule.m */; };
 		A54950932D027CBD00A5934F /* BatteryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A54950922D027CBD00A5934F /* BatteryModule.m */; };
 		A5D667352D026F6700159A75 /* BatteryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D667342D026F6700159A75 /* BatteryModule.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,8 @@
 		6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Lab8App/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Lab8App/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Lab8App-Lab8AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lab8App-Lab8AppTests.release.xcconfig"; path = "Target Support Files/Pods-Lab8App-Lab8AppTests/Pods-Lab8App-Lab8AppTests.release.xcconfig"; sourceTree = "<group>"; };
+		A53C37292D03CCF400958C4A /* EventEmitterModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEmitterModule.swift; sourceTree = "<group>"; };
+		A53C372C2D03CD4400958C4A /* EventEmitterModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventEmitterModule.m; sourceTree = "<group>"; };
 		A54950922D027CBD00A5934F /* BatteryModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BatteryModule.m; sourceTree = "<group>"; };
 		A5D667332D026F6700159A75 /* Lab8App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lab8App-Bridging-Header.h"; sourceTree = "<group>"; };
 		A5D667342D026F6700159A75 /* BatteryModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryModule.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				A53C372C2D03CD4400958C4A /* EventEmitterModule.m */,
+				A53C37292D03CCF400958C4A /* EventEmitterModule.swift */,
 				A54950922D027CBD00A5934F /* BatteryModule.m */,
 				A5D667342D026F6700159A75 /* BatteryModule.swift */,
 				6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */,
@@ -425,9 +431,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				A53C372D2D03CD4400958C4A /* EventEmitterModule.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				A5D667352D026F6700159A75 /* BatteryModule.swift in Sources */,
 				A54950932D027CBD00A5934F /* BatteryModule.m in Sources */,
+				A53C372A2D03CCF400958C4A /* EventEmitterModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

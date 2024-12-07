@@ -29,6 +29,9 @@ export const styles = StyleSheet.create({
     top: PADDING,
     bottom: PADDING,
   },
+  warningCharge: {
+    backgroundColor: 'orangered',
+  },
   levelText: {
     fontSize: 20,
     fontWeight: 'bold',

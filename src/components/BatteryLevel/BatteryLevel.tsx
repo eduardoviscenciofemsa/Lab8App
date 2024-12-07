@@ -1,14 +1,19 @@
 import React, {useEffect, useCallback, useRef} from 'react';
 import {Animated, Text, View} from 'react-native';
 
+import {useBatteryLevel} from '../../hooks/useBatteryLevel';
+
 import {styles} from './BatteryLevel.styles';
 
-type PropsT = {
-  level: number;
-  error: string | null;
-};
+const BatteryLevel = () => {
+  const {
+    batteryLevel: level,
+    error,
+    warning,
+  } = useBatteryLevel({
+    warningThreshold: 20,
+  });
 
-const BatteryLevel = ({level, error}: PropsT) => {
   const chargeWidth = useRef(new Animated.Value(0)).current;
 
   const animate = useCallback(() => {
@@ -27,19 +32,22 @@ const BatteryLevel = ({level, error}: PropsT) => {
   return (
     <View style={styles.container}>
       <View style={styles.outContainer} />
-      <Animated.View
-        style={[
-          styles.charge,
-          {
-            width: chargeWidth.interpolate({
-              inputRange: [0, 100],
-              outputRange: ['0%', '100%'],
-            }),
-          },
-        ]}
-      />
       {!error ? (
-        <Text style={styles.levelText}>{level}%</Text>
+        <>
+          <Animated.View
+            style={[
+              styles.charge,
+              warning && styles.warningCharge,
+              {
+                width: chargeWidth.interpolate({
+                  inputRange: [0, 100],
+                  outputRange: ['0%', '100%'],
+                }),
+              },
+            ]}
+          />
+          <Text style={styles.levelText}>{level}%</Text>
+        </>
       ) : (
         <Text style={styles.errorText}>{error}</Text>
       )}

@@ -1,4 +1,4 @@
 export interface BatteryModuleType {
   getBatteryLevel(): Promise<number>;
-  performHeavyTask(): Promise<number>;
+  getBatteryLevelAsync(): Promise<number>;
 }

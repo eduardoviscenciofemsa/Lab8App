@@ -45,9 +45,18 @@ class BatteryModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
     }
 
     @ReactMethod
-    fun performHeavyTask(promise: Promise) {
+    fun getBatteryLevelAsync(promise: Promise) {
         Thread(Runnable {
-            getBatteryLevel(promise);
+            try {
+                val ifilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+                val batteryStatus = reactApplicationContext.registerReceiver(batteryLevelReceiver, ifilter)
+                val level = batteryStatus?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
+                val scale = batteryStatus?.getIntExtra(BatteryManager.EXTRA_SCALE, -1) ?: -1
+                val batteryLevel = level / scale.toDouble() * 100
+                promise.resolve(batteryLevel.toInt())
+            } catch (e: Exception) {
+                promise.reject("E_BATTERY_LEVEL", "Battery level unavailable", e)
+            }
         }).start()
     }
 }
